@@ -159,6 +159,7 @@ export class GroupRoute {
                             message[counter] = e.Message,
                                 message[++counter] = e.User,
                                 message[++counter] = checkmessage._id
+                                message[++counter]=`this is  next member message`
                             counter += 1;
                             countOfWord += 1;
                         }

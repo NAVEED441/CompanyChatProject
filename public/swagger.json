@@ -428,6 +428,7 @@
 						}
 					}
 				},
+				"description": "Save admin controller",
 				"tags": [
 					"admin"
 				],
@@ -524,6 +525,7 @@
 						}
 					}
 				},
+				"description": "user save controller function but only admin can add the user",
 				"tags": [
 					"User"
 				],
@@ -560,6 +562,7 @@
 						}
 					}
 				},
+				"description": "User manage its profile",
 				"tags": [
 					"User"
 				],
@@ -607,6 +610,7 @@
 						}
 					}
 				},
+				"description": "Only admin can delete User",
 				"tags": [
 					"User"
 				],
@@ -643,6 +647,7 @@
 						}
 					}
 				},
+				"description": "user login",
 				"tags": [
 					"User"
 				],
@@ -675,6 +680,7 @@
 						}
 					}
 				},
+				"description": "only admin create the groups",
 				"tags": [
 					"Group"
 				],
@@ -726,6 +732,7 @@
 						}
 					}
 				},
+				"description": "only admin delete the groups",
 				"tags": [
 					"Group"
 				],
@@ -762,6 +769,7 @@
 						}
 					}
 				},
+				"description": "only admin can add member in the groups",
 				"tags": [
 					"Group"
 				],

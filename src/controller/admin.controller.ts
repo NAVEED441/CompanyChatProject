@@ -3,7 +3,7 @@ import { Post, Tags, Put, Body, Route, Security } from "tsoa";
 import CustomError from '../utills/error';
 import { SaveUpdateResAdmin } from "../types/responce/admin.responce";
 import { MainAdmin } from "../repositories/admin.repositories";
-import { IADMIN } from "../types/document/IAdmin";
+import { IADMIN } from "../types/document/IADMIN";
 @Route('admin')
 @Tags('admin')
 export class AdminController {

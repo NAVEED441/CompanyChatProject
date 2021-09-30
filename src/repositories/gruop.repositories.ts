@@ -11,7 +11,7 @@ export default class MainGruop{
             return new GroupSchema(gruop).save();
     }
     
-    /**this function is not use in the project */
+    /**only admin can delete the group */
     deletGroup(_id:string){
         return GroupSchema.findByIdAndDelete(_id);
       } 

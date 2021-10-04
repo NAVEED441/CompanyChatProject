@@ -94,7 +94,7 @@ export class GroupRoute {
                         Result: []
                     }
                     
-                    console.log('first group')
+                  
                     element.Message.map((message: any) => {
                         
                         if(message.Message.toLowerCase().includes(addmemberreq.Msg.toLowerCase())) {
@@ -156,7 +156,7 @@ export class GroupRoute {
         /** searching message in the group */
         this.router.post('/checkingMessage', auth, async (req, res, next) => {
             try {
-                const addmemberreq: ReturnGroupMessage = req.body;
+                const addmemberreq: CheckingMessage = req.body;
                 const groupname: SaveUpdateResgroup[] = <any>await new GroupController().checkingMesage(addmemberreq)
                 let result: any[]=[]
                 if(groupname){
@@ -196,6 +196,4 @@ export class GroupRoute {
 
 export const GroupRoutesApi = new GroupRoute().router;
 
-function checkmessage(checkmessage: any) {
-    return checkmessage.search("pakistan")
-}
+

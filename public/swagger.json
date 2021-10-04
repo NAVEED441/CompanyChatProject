@@ -349,11 +349,15 @@
 			},
 			"ReturnGroupMessage": {
 				"properties": {
+					"UserId": {
+						"type": "string"
+					},
 					"Msg": {
 						"type": "string"
 					}
 				},
 				"required": [
+					"UserId",
 					"Msg"
 				],
 				"type": "object",
@@ -380,16 +384,16 @@
 			},
 			"CheckingMessage": {
 				"properties": {
-					"_id": {
+					"UserId": {
 						"type": "string"
 					},
-					"message": {
+					"Msg": {
 						"type": "string"
 					}
 				},
 				"required": [
-					"_id",
-					"message"
+					"UserId",
+					"Msg"
 				],
 				"type": "object",
 				"additionalProperties": false

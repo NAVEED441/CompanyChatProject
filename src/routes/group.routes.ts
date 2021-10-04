@@ -156,44 +156,39 @@ export class GroupRoute {
         /** searching message in the group */
         this.router.post('/checkingMessage', auth, async (req, res, next) => {
             try {
-                const checkmessage: CheckingMessage = req.body;
-                const groupname: IGROUP = <any>await new GroupController().checkingMesage(checkmessage)
-
-                if (groupname) {
-                    var message: any = new Array(2)
-                    var counter = 0;
-                    var countOfWord = 0;
-                    groupname.Message.forEach(e => {
-
-                        if (e.Message.search(checkmessage.message) === -1) {
-
-
-                        } else {
-                            message[counter] = e.Message,
-                                message[++counter] = e.User,
-                                message[++counter] = checkmessage._id
-                                message[++counter]=`this is  next member message`
-                            counter += 1;
-                            countOfWord += 1;
+                const addmemberreq: ReturnGroupMessage = req.body;
+                const groupname: SaveUpdateResgroup[] = <any>await new GroupController().checkingMesage(addmemberreq)
+                let result: any[]=[]
+                if(groupname){
+                groupname.map((element: any) => {
+                    let groupResult: CheckMsgResGroup = {
+                        Group: element.Msg,
+                        Result: []
+                    }
+                    
+                    console.log('first group')
+                    element.Message.map((message: any) => {
+                      console.log(message.User)
+                        if(message.Message.toLowerCase().includes(addmemberreq.Msg.toLowerCase()) &&  message.User.toString() === addmemberreq.UserId.toString() ) {
+                            groupResult.Result.push({
+                                User: message.User,
+                                Message: message.Message
+                            })
                         }
-                        // if (e.Message.search('Salary')) {
-
-                        //     })
-                        // }
-
-                    });
-                    res.status(200).json({
-                        Message: message,
-                        Word_Using_count: countOfWord
-
                     })
-                }
+                    if (groupResult.Result.length > 0) {
+                        result.push(groupResult)
+                    }
+                })
+                 res.json(result)
+            }
 
             } catch (err) {
                 next(err)
             }
         });
 
+       
 
     }
    

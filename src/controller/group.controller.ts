@@ -57,7 +57,7 @@ export default class GroupController {
   @Security('api_key')
   @Post('/checkingMessage')
   async checkingMesage(@Body() req: CheckingMessage): Promise<SaveUpdateResgroup> {
-    const add_member: IGROUP = <any>await new MainGruop().checkmessage(req._id)
+    const add_member: IGROUP = <any>await new MainGruop().checkmessage(req.UserId)
     return <SaveUpdateResgroup>add_member;
   }
 

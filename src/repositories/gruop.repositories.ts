@@ -33,6 +33,6 @@ export default class MainGruop{
       return GroupSchema.findById(id);
 }
 checkmessage(id:string){
-  return GroupSchema.findById(id);
+  return GroupSchema.find()
 }
     }

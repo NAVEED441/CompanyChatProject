@@ -16,9 +16,10 @@ export interface MessageInGroup {
     Message: Messageinterface[]
 }
 export interface ReturnGroupMessage {
+    UserId:string,
    Msg: string
 }
 export interface CheckingMessage {
-    _id: string,
-    message: string
+    UserId:string,
+    Msg: string
 }

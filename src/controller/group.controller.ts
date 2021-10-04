@@ -38,9 +38,9 @@ export default class GroupController {
   // if admin want to checkmessages in the group
   @Security('api_key')
   @Post('/returnmessages')
-  async returnGropMessage(@Body() req: ReturnGroupMessage): Promise<SaveUpdateResgroup> {
-    const add_member: IGROUP = <any>await new MainGruop().returnMessages(req._id)
-    return <SaveUpdateResgroup>add_member;
+  async returnGropMessage(@Body() req: ReturnGroupMessage): Promise<SaveUpdateResgroup[]> {
+    const add_member: IGROUP[] = <any>await new MainGruop().returnMessages(req.Msg)
+    return <SaveUpdateResgroup[]>add_member;
 
   }
 
@@ -48,7 +48,7 @@ export default class GroupController {
 
   @Post('/savemessages')
   async SaveMessage(@Body() req: MessageInGroup): Promise<SaveUpdateResgroup> {
-    const add_member: IGROUP = <any>await new MainGruop().returnMessages(req.groupId)
+    const add_member: IGROUP = <any>await new MainGruop().saveMessage(req.groupId)
     return <SaveUpdateResgroup>add_member;
 
   }
@@ -57,7 +57,7 @@ export default class GroupController {
   @Security('api_key')
   @Post('/checkingMessage')
   async checkingMesage(@Body() req: CheckingMessage): Promise<SaveUpdateResgroup> {
-    const add_member: IGROUP = <any>await new MainGruop().returnMessages(req._id)
+    const add_member: IGROUP = <any>await new MainGruop().checkmessage(req._id)
     return <SaveUpdateResgroup>add_member;
   }
 

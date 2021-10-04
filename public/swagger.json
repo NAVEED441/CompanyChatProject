@@ -349,12 +349,12 @@
 			},
 			"ReturnGroupMessage": {
 				"properties": {
-					"_id": {
+					"Msg": {
 						"type": "string"
 					}
 				},
 				"required": [
-					"_id"
+					"Msg"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -364,7 +364,7 @@
 					"groupId": {
 						"type": "string"
 					},
-					"Messages": {
+					"Message": {
 						"items": {
 							"$ref": "#/components/schemas/Messageinterface"
 						},
@@ -373,7 +373,7 @@
 				},
 				"required": [
 					"groupId",
-					"Messages"
+					"Message"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -800,7 +800,10 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/SaveUpdateResgroup"
+									"items": {
+										"$ref": "#/components/schemas/SaveUpdateResgroup"
+									},
+									"type": "array"
 								}
 							}
 						}

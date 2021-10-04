@@ -10,3 +10,13 @@ export interface SaveUpdateResgroup {
     updatedAt?: string;
 
 }
+
+
+export interface CheckMsgResGroup {
+    Group : string,
+    Result: Message[]
+}
+interface Message {
+    User: string
+    Message: string
+}

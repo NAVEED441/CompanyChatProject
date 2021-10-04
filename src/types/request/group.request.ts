@@ -13,10 +13,10 @@ export interface AddUserInGruop {
 }
 export interface MessageInGroup {
     groupId: string,
-    Messages: Messageinterface[]
+    Message: Messageinterface[]
 }
 export interface ReturnGroupMessage {
-    _id: string
+   Msg: string
 }
 export interface CheckingMessage {
     _id: string,

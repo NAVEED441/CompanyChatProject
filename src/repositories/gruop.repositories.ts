@@ -24,12 +24,15 @@ export default class MainGruop{
 
     /** return All messages of the group */
     returnMessages(_id:string){
-      return GroupSchema.findById(_id);
+      //var checkMessage=[{$match:  { Message:"pakistan is my country"}}]
+      return GroupSchema.find()
     }
 
     /**send message in the group */
     saveMessage(id:string){
       return GroupSchema.findById(id);
 }
-
+checkmessage(id:string){
+  return GroupSchema.findById(id);
+}
     }

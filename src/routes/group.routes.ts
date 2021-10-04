@@ -3,7 +3,7 @@ import Jwt from 'jsonwebtoken';
 import { SaveGruopReq, DeletGruopReq, AddUserInGruop, MessageInGroup, CheckingMessage, ReturnGroupMessage } from "../types/request/group.request";
 import GroupController from '../controller/group.controller';
 import { auth } from '../middleware/auth';
-import { SaveUpdateResgroup } from "../types/responce/group.responce";
+import { SaveUpdateResgroup, CheckMsgResGroup } from "../types/responce/group.responce";
 import { IGROUP } from '../types/document/IGROUP';
 import e from 'express';
 import { Res } from '@tsoa/runtime';
@@ -85,25 +85,38 @@ export class GroupRoute {
 
             try {
                 const addmemberreq: ReturnGroupMessage = req.body;
-                const groupname: IGROUP = <any>await new GroupController().returnGropMessage(addmemberreq)
-
-                if (groupname) {
-
-
-
-                    res.status(200).json({
-                        result: groupname
+                const groupname: SaveUpdateResgroup[] = <any>await new GroupController().returnGropMessage(addmemberreq)
+                let result: any[]=[]
+                if(groupname){
+                groupname.map((element: any) => {
+                    let groupResult: CheckMsgResGroup = {
+                        Group: element.Msg,
+                        Result: []
+                    }
+                    
+                    console.log('first group')
+                    element.Message.map((message: any) => {
+                        
+                        if(message.Message.toLowerCase().includes(addmemberreq.Msg.toLowerCase())) {
+                            groupResult.Result.push({
+                                User: message.User,
+                                Message: message.Message
+                            })
+                        }
                     })
-                }
-
-
-
+                    if (groupResult.Result.length > 0) {
+                        result.push(groupResult)
+                    }
+                })
+                 res.json(result)
+            }
 
             } catch (err) {
                 next(err)
             }
         });
 
+       
 
         /** save message in the group */
         this.router.post('/savemessages', async (req, res, next) => {
@@ -114,7 +127,7 @@ export class GroupRoute {
                 if (groupname) {
 
 
-                    savemesage.Messages.map(e => {
+                    savemesage.Message.map(e => {
                         groupname.Message.push({
                             User: e.User,
                             Message: e.Message
@@ -183,5 +196,11 @@ export class GroupRoute {
 
 
     }
+   
 }
+
 export const GroupRoutesApi = new GroupRoute().router;
+
+function checkmessage(checkmessage: any) {
+    return checkmessage.search("pakistan")
+}
